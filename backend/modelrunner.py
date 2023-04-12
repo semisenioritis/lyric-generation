@@ -2,6 +2,7 @@ import pickle
 import torch
 import torch.nn as nn
 from torch.nn import functional as F
+import random
 
 # hyperparameters
 batch_size = 64 # how many independent sequences will we process in parallel?
@@ -17,15 +18,10 @@ n_layer = 6
 dropout = 0.4
 # ------------
 
-torch.manual_seed(1337)
 
-device = 'cuda' if torch.cuda.is_available() else 'cpu'
-
-
-
-
-# Load the model from the file
 def taylor_caller():
+    rand = random.randint(10, 2000)
+    torch.manual_seed(rand)
     with open('taylorswift.txt', 'r', encoding='utf-8') as f:
         text = f.read()
 
@@ -174,6 +170,8 @@ def taylor_caller():
     return result
 
 def ed_caller():
+    rand = random.randint(10, 2000)
+    torch.manual_seed(rand)
     with open('edsheeran.txt', 'r', encoding='utf-8') as f:
         text = f.read()
 
@@ -322,6 +320,8 @@ def ed_caller():
     return result
 
 def rihanna_caller():
+    rand = random.randint(10, 2000)
+    torch.manual_seed(rand)
     with open('rihanna.txt', 'r', encoding='utf-8') as f:
         text = f.read()
 
@@ -468,3 +468,4 @@ def rihanna_caller():
 
     result=str(decode(mm.generate(context, max_new_tokens=270)[0].tolist()))
     return result
+
